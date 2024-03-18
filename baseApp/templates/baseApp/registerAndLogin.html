@@ -1,0 +1,35 @@
+
+
+{% block contentBlock %}
+
+<a href = "{% url 'home' %}">Home</a>
+
+<hr>
+
+{% if pageType == 'login' %}
+<div>
+    <form method = "POST" action = "">
+        {% csrf_token %}
+        <label for = "unn">Enter Username:</label>
+        <input type = "text" name = "un" id = "unn">
+        <label for = "pwp">Enter password:</label>
+        <input type = "password" name = "pw" id = "pwp">
+        <input type = "submit" value = "Login">
+    </form>
+    <p>Don't have an account?</p>
+    <em><a href = "{% url 'registerUser' %}">Click here</a> to register</em>
+</div>
+
+{% else %}
+<div>
+    <form method = "POST" action = "">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type = "submit" value = "Register">
+    </form>
+    <p>Already have an account?</p>
+    <em><a href = "{% url 'userLogin' %}">Click here</a> to login</em>
+</div>
+
+{% endif %}
+{% endblock contentBlock %}

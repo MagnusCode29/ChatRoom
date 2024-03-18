@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+
+{% block contentBlock %}
+
+<style>
+    .profile_page {
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+        padding-left: 10px;
+    }
+    .profile {
+        padding-left: 10px;
+    }
+</style>
+
+<div class = "profile">
+<h2>This is {{persoon.username}}'s profile page.</h2>
+
+<button class = "btn btn-danger"><a style = "color: yellow;"href = "{{request.META.HTTP_REFERER}}">Return</a></button>
+
+{% if request.user == persoon %}
+<h3><a href = "{% url 'edit-user' %}">Edit</a></h3>
+{% endif %}
+<div class = "profile_page">
+    <div>
+        {% include 'baseApp/clusterView.html' %}
+    </div>
+    <div>
+        {% for group in createdGs %} 
+            <div><h1>{{group.GroupName}}<h1></h1></div>
+            <div>{{group.GroupDescription}}</div>
+        {% endfor %}
+    </div>
+    <div>
+        {% include 'baseApp/recentFeed.html' %}
+    </div>
+</div>
+</div>
+{% endblock contentBlock %}

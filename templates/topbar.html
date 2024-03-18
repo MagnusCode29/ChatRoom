@@ -1,0 +1,23 @@
+<center><h1 style="color: blue;"><a href = "{% url 'home' %}" style = "text-decoration: none;">Your ChatRoom</a></h1></center>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+<form method = "GET" action = "{% url 'home' %}">
+    <input type = "text" name = "f" placeholder = "search groups.....">
+</form>
+
+<style>
+    .bar {
+        padding-left: 10px;
+    }
+</style>
+
+<div class = "bar">
+    {% if request.user.is_authenticated %}
+    <h2>Hello, {{request.user}}</h2>
+    {%endif %}
+    {% if request.user.is_authenticated %} 
+    <button class = "btn btn-primary"><a href = "{% url 'userLogout' %}" style = "color: yellow;">Logout</a></button>
+    {% else %}
+    <button class = "btn btn-primary"><a href = "{% url 'userLogin' %}" style="color: yellow;">Login</a></button>
+    {% endif %}
+</div>

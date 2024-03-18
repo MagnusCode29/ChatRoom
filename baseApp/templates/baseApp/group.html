@@ -1,0 +1,40 @@
+{% extends 'main.html' %}
+
+{% block contentBlock %}
+
+<style>
+    .group {
+        padding-left: 10px;
+    }
+</style>
+
+
+<div class = "group">
+<a href = "{% url 'home' %}" style = "text-decoration:none;"><p>&larr; Go Back</p></a>
+
+<h2>Welcome to {{groups.GroupName}}</h2>
+<p>{{groups.GroupDescription}}</p>
+<hr>
+<h3>Chat</h3>
+{% for msg in messgs %}
+<div class = "messages-present">
+    <small>{{msg.user}}  {{msg.created|timesince}} ago</small>
+    {% if request.user == msg.user %}
+    <a href = "{% url 'deleteMessage' msg.id %}">Delete</a>
+    <!--<a href = "{% url 'edit-msg' msg.id}">Edit</a>-->
+    {% endif %}
+    <h4 style = "color:red;">{{msg.content}}</h4>
+    <hr>
+</div>
+{% endfor %}
+{% if request.user.is_authenticated %}
+<div class = "messsage-box">
+    <form method = "POST" action = "">
+        {% csrf_token %}
+        <input type = "text" name = "newMessage" placeholder = "Your message goes here...">
+    </form>
+</div>
+</div>
+{% endif %}
+
+{% endblock contentBlock %}

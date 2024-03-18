@@ -1,0 +1,15 @@
+<h3>Latest Activity</h3>
+        <hr>
+        {% for latest in feed %}
+        <a href = "{% url 'group' latest.group.id %}" style = "text-decoration: none;">
+            <div>
+                <small><a href = "{% url 'user_profile' latest.user.id %}">@{{latest.user}}</a> - {{latest.created|timesince}} ago</small>
+                <small>messaged in <a style = "text-decoration:none;" href = "{% url 'group' latest.group.id %}"><h4>"{{latest.group}}"</h4></a></small>
+                <p>{{latest}}</p>
+                {% if request.user == latest.user %}
+                <a href = "{% url 'deleteMessage' latest.id %}">Delete</a>
+                {% endif %}
+                <hr>
+            </div>
+        </a>
+        {% endfor %}

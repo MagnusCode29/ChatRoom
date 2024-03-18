@@ -1,0 +1,17 @@
+{% if group_count >= 1 %}
+        <h3 style="padding-left: 10px;">The following groups are present in cluster: </h3>
+        <br>
+        <div style="padding-left: 16px;">
+            {% for gr in grps %} 
+                {% if request.user == gr.admin %}
+                    <button class = "btn btn-primary"><a style = "color: yellow" href = "{% url 'edit_group' gr.id %}">Edit</a></button>
+                    <button class = "btn btn-primary"><a href = "{% url 'del_grp' gr.id %}" style = "color: yellow;">Delete</a></button>  
+                {% endif %}
+                <span>{{gr.cluster.clusterName}}</span>
+                <br>
+                <!-- <span>{{gr.admin}}</span> </a>-->
+                <h2><a href = "{% url 'group' gr.id %}">{{gr.GroupName}}</a> created by <a href = "{% url 'user_profile' gr.admin.id %}">{{gr.admin}}</a></h2>
+                <hr>
+            {% endfor %}
+        {% endif %}
+        </div>

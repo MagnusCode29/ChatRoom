@@ -1,0 +1,16 @@
+{% extends 'main.html' %}
+
+{% block contentBlock %}
+
+<form method = "POST">
+    {% csrf_token %}
+    {% if obj == 'group' %}
+    <em>Do you want to delete {{entity}} group?</em>
+    {% else %}
+    <em>Do you want to delete the message {{entity}}?</em>
+    {% endif %}
+    <a href = "{{request.META.HTTP_REFERER}}">Return</a>
+    <input type = "submit" value = "Confirm">
+</form>
+
+{% endblock contentBlock %}

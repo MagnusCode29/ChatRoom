@@ -1,0 +1,36 @@
+{% extends 'main.html' %}
+
+{% block contentBlock %}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+
+<style>
+    .homepage {
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+        padding-left: 10px;
+    }
+</style>
+
+<div class = 'homepage'>
+    <div>
+        {% include 'baseApp/clusterView.html' %}
+    </div>
+    <div>
+        <div>
+            <button class = "btn btn-primary"><a href = "{% url 'create_group' %}" style = "color: yellow;">Create New Group</a></button>
+        </div>
+        {% if group_count == 0 %}
+        <h4>No groups available :(</h4>
+        {% elif group_count == 1 %} 
+        <h4>1 group available</h4>
+        {% else %}
+        <h4>{{group_count}} groups available.</h4>
+        {% endif %}
+        {% include 'baseApp/mainFeed.html' %}
+    </div>
+    <div class = "recents">
+        {% include 'baseApp/recentFeed.html' %}
+    </div>
+</div>
+{% endblock contentBlock %}
