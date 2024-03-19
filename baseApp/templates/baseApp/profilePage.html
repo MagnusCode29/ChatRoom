@@ -11,28 +11,51 @@
     .profile {
         padding-left: 10px;
     }
+    .d1 {
+        padding-left: 20px;
+    }
+    .d2 {
+        padding-left: 20px;
+    }
+    .d3 {
+        padding-left: 20px;
+    }
+    .a {
+        padding-top: 20px;
+    }
+    .editButton {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding-right: 30px;
+        padding-top: 89px;
+    }
 </style>
 
 <div class = "profile">
 <h2>This is {{persoon.username}}'s profile page.</h2>
 
-<button class = "btn btn-danger"><a style = "color: yellow;"href = "{{request.META.HTTP_REFERER}}">Return</a></button>
 
+<div class = "col-xs-6"><button class = "btn btn-danger"><a style = "color: yellow;"href = "{{request.META.HTTP_REFERER}}">Return</a></button></div>
+<br>
+<br>
 {% if request.user == persoon %}
-<h3><a href = "{% url 'edit-user' %}">Edit</a></h3>
+    <div class = "editButton col-xs-6"><button class = "btn btn-danger"><a style = "color: yellow" href = "{% url 'edit-user' %}">Edit</a></button></div>
 {% endif %}
-<div class = "profile_page">
-    <div>
-        {% include 'baseApp/clusterView.html' %}
-    </div>
-    <div>
-        {% for group in createdGs %} 
-            <div><h1>{{group.GroupName}}<h1></h1></div>
-            <div>{{group.GroupDescription}}</div>
-        {% endfor %}
-    </div>
-    <div>
-        {% include 'baseApp/recentFeed.html' %}
+<div class = "a">
+    <div class = "profile_page">
+        <div class = "d1">
+            {% include 'baseApp/clusterView.html' %}
+        </div>
+        <div class = "d2">
+            {% for group in createdGs %} 
+                <div><h1>{{group.GroupName}}<h1></h1></div>
+                <div>{{group.GroupDescription}}</div>
+            {% endfor %}
+        </div>
+        <div class = "d3">
+            {% include 'baseApp/recentFeed.html' %}
+        </div>
     </div>
 </div>
 </div>

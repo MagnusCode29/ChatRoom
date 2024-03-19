@@ -1,13 +1,32 @@
 <center><h1 style="color: blue;"><a href = "{% url 'home' %}" style = "text-decoration: none;">Your ChatRoom</a></h1></center>
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
-<form method = "GET" action = "{% url 'home' %}">
-    <input type = "text" name = "f" placeholder = "search groups.....">
-</form>
+<link rel="stylesheet" href=
+"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" />
+ 
+    <!-- Bootstrap Font Icon CSS -->
+    <link rel="stylesheet" href=
+"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" />
+
+
+<div class = "searchbar">
+    <form method = "GET" action = "{% url 'home' %}">
+        <input type = "text" name = "f" placeholder = "search groups.....">
+    </form>
+</div>
 
 <style>
     .bar {
         padding-left: 10px;
+    }
+    .searchbar {
+        padding-left: 10px;
+    }
+    .pf {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding-right: 30px;
+        padding-top: 50px;
     }
 </style>
 
@@ -21,3 +40,12 @@
     <button class = "btn btn-primary"><a href = "{% url 'userLogin' %}" style="color: yellow;">Login</a></button>
     {% endif %}
 </div>
+
+<a href = "{% url 'user_profile' request.user.id %}">
+    <div class = "pf">
+        <h4>My Profile</h4>
+        <div>
+            <i class="bi bi-file-person h2"></i>
+        </div>
+    </div>
+</a>

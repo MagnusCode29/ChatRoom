@@ -157,17 +157,3 @@ def editUser(request):
             return redirect('user_profile', pk = request.user.id)
     context = {'userData':user}
     return render(request, 'baseApp/editUser.html', context)
-
-"""
-@login_required(login_url = 'userLogin')
-def editMessage(request, pk):
-    message = Messages.objects.get(id = pk)
-    messageForm = MessageForm(instance = message)
-    if(request.method == "POST"):
-        messageForm = MessageForm(request.POST, instance = message)
-        if messageForm.is_valid():
-            messageForm.save()
-            return redirect('home')
-    context = {'entity':message}
-    return render(request, 'baseApp/group.html', context)
-"""
